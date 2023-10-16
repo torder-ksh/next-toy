@@ -7,7 +7,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-const queryKey = {
+export const queryKey = {
   base: ["todo"] as const,
   todoList: (filter: TodoFilter) => [...queryKey.base, "list", filter] as const,
   detailTodo: (todoId: string) => [...queryKey.base, "detail", todoId] as const,

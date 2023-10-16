@@ -1,6 +1,7 @@
 import { getTodoList } from "@/api/todo/todo.ts";
 
 import TodoList from "./components/TodoList";
+import HydratedTodo from "./HydratedData";
 
 const Todo = async () => {
   const todoList = await getTodoList();
@@ -8,7 +9,7 @@ const Todo = async () => {
   return (
     <div>
       <h1>Todo</h1>
-      <TodoList todoList={todoList} />
+      <HydratedTodo />
     </div>
   );
 };

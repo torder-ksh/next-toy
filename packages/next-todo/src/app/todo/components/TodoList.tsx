@@ -2,7 +2,7 @@
 
 import Button from "@/app/common/Button";
 import InputBox from "@/app/common/InputBox";
-import { Todo, TodoFilter } from "@/interface/todo/todo";
+import { TodoFilter } from "@/interface/todo/todo";
 import {
   useTodoCreateMutation,
   useTodoDeleteMutation,
@@ -10,19 +10,15 @@ import {
 } from "@/queries/todo";
 import { useState } from "react";
 
-interface Props {
-  todoList: Todo[];
-}
-
-const TodoList = ({ todoList }: Props) => {
+const TodoList = () => {
   const [input, setInput] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filters, setFilters] = useState<TodoFilter>({ content: "" });
 
   const { mutate: createMutate } = useTodoCreateMutation();
   const { mutate: deleteMutate } = useTodoDeleteMutation();
+
   const { data, isStale, refetch } = useTodoListQuery({
-    initialData: todoList,
     filters,
   });
 
@@ -37,7 +33,6 @@ const TodoList = ({ todoList }: Props) => {
   const onClickSearch = () => {
     setFilters({ content: searchKeyword });
     setSearchKeyword("");
-    // refetch();
   };
 
   const onClickAdd = () => {
@@ -63,7 +58,7 @@ const TodoList = ({ todoList }: Props) => {
         </Button>
       </div>
       <ul className="flex flex-col gap-3">
-        {data.map(({ content, _id }) => {
+        {data?.map(({ content, _id }) => {
           return (
             <li key={_id} className="flex justify-between items-center">
               <div>{content}</div>
