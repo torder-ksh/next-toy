@@ -1,7 +1,7 @@
-import Lnb from "@/app/common/Lnb";
 import Header from "./common/Header";
 import Providers from "./providers";
 import "@/styles/global.scss";
+import HydratedLnb from "./common/HydratedLnb";
 
 export default function RootLayout({
   children,
@@ -14,7 +14,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex flex-row">
             <div className="flex">
-              <Lnb />
+              <HydratedLnb />
             </div>
             <div>
               <Header />
